@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { githubApi } from '~src/api/gist';
+import { githubApi } from '~src/api/github';
 import { PublicGist } from '~src/@types';
 
 export const useGists = () => {
@@ -9,7 +9,7 @@ export const useGists = () => {
 
   const getPublicGists = async () => {
     try {
-      const gistsResponse = await githubApi.get('gists');
+      const gistsResponse = await githubApi.get('/gists');
 
       setpublicGists(gistsResponse.data);
       setIsLoading(false);
