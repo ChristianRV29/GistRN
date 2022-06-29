@@ -12,7 +12,6 @@ export const useGists = () => {
       const gistsResponse = await githubApi.get('gists');
 
       setpublicGists(gistsResponse.data);
-
       setIsLoading(false);
     } catch (err) {
       console.log(
