@@ -1,12 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const App = () => {
+export const HomeScreen = () => {
   return (
     <View>
-      <Text>Gist app</Text>
+      <Text>Welcome to homescreen</Text>
     </View>
   );
 };
-
-export default App;
