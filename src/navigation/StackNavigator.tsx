@@ -3,9 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { HomeScreen } from '~src/screens/HomeScreen';
 
-export const StackNavigator = () => {
-  const { Navigator, Screen } = createNativeStackNavigator();
+export type RootStackParamList = { HomeScreen: undefined };
 
+const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
+
+export const StackNavigator = () => {
   return (
     <Navigator
       initialRouteName="HomeScreen"
