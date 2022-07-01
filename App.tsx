@@ -1,16 +1,14 @@
+import 'react-native-safe-area-context';
 import React from 'react';
-import { Text, View } from 'react-native';
-import { useGists } from '~src/hooks/useGists';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { StackNavigator } from '~src/navigation/StackNavigator';
 
 const App = () => {
-  const { isLoading, publicGists } = useGists();
-
-  console.log('💬 ~ Gits: ', publicGists);
-
   return (
-    <View>
-      <Text>{isLoading ? 'Loading' : 'No loading'}</Text>
-    </View>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
 };
 
