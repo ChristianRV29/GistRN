@@ -2,7 +2,7 @@ import { ThemeState } from '~src/@types/theme';
 
 type ThemeAction = { type: 'set_light_theme' } | { type: 'set_dark_theme' };
 
-const darkTheme: ThemeState = {
+export const darkTheme: ThemeState = {
   currentTheme: 'Dark',
   dark: true,
   dividerColor: '#0f1d25',
