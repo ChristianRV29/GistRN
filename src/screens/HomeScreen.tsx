@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -17,20 +17,35 @@ export const HomeScreen = () => {
       style={{
         ...globalStyles.mainWrapper,
         top: top + 20,
-        ...styles.homeWrapper,
       }}>
-      <Text style={{ ...styles.textTitle, color: colors.text }}>All gists</Text>
-      <Icon size={30} color={colors.text} name="git-branch-outline" />
+      <View style={styles.heroWrapper}>
+        <Text style={{ ...styles.textTitle, color: colors.text }}>
+          Public Gists
+        </Text>
+        <Icon size={30} color={colors.text} name="git-branch-outline" />
+      </View>
+      <Image
+        source={require('~src/assets/images/octocat.png')}
+        style={styles.octoImage}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  homeWrapper: {
+  heroWrapper: {
+    alignItems: 'center',
     flexDirection: 'row',
   },
   textTitle: {
     marginRight: 10,
     fontSize: 35,
+  },
+  octoImage: {
+    height: 300,
+    opacity: 0.2,
+    position: 'absolute',
+    right: -50,
+    width: 250,
   },
 });
