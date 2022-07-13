@@ -35,7 +35,10 @@ export const HomeScreen = () => {
         {isLoading ? (
           <ActivityIndicator size={50} color={colors.notification} />
         ) : (
-          <GistCard gist={publicGists[0]} />
+          <>
+            <GistCard gist={publicGists[0]} />
+            <GistCard gist={publicGists[1]} />
+          </>
         )}
       </View>
     </View>
@@ -45,11 +48,12 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
   heroWrapper: {
     alignItems: 'center',
-    flexDirection: 'row',
-    borderWidth: 2,
+    borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderTopColor: 'transparent',
-    borderLeftColor: 'transparent',
+    borderWidth: 2,
+    flexDirection: 'row',
+    marginBottom: 10,
   },
   textTitle: {
     marginRight: 10,
