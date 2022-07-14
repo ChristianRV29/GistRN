@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { formatDistance } from 'date-fns';
 
 import { PublicGist } from '~src/@types/index';
 import { ThemeContext } from '~src/context/theme/theme';
@@ -29,6 +30,13 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
         <View style={styles.overviewContainer}>
           <Text style={{ ...styles.ownerName, color: theme.colors.text }}>
             {gist.owner.login}
+          </Text>
+          <Text
+            style={{
+              ...styles.creationDate,
+              color: theme.colors.notification,
+            }}>
+            {formatDistance(new Date(gist.created_at), new Date())} ago
           </Text>
         </View>
         <View style={styles.generalContainer}>
@@ -70,6 +78,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
+    width: 440,
   },
   imageWrapper: {
     flex: 1,
@@ -85,6 +94,9 @@ const styles = StyleSheet.create({
   },
   ownerName: {
     fontSize: 20,
+  },
+  creationDate: {
+    fontSize: 12,
   },
   stadistic: {
     fontSize: 12,

@@ -1,5 +1,12 @@
 import React, { useContext } from 'react';
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { GistCard } from '~src/components/GistCard';
@@ -35,10 +42,16 @@ export const HomeScreen = () => {
         {isLoading ? (
           <ActivityIndicator size={50} color={colors.notification} />
         ) : (
-          <>
-            <GistCard gist={publicGists[2]} />
-            {/* <GistCard gist={publicGists[1]} /> */}
-          </>
+          <FlatList
+            data={publicGists}
+            keyExtractor={gist => gist.id}
+            onEndReachedThreshold={0.4}
+            renderItem={({ item }) => <GistCard gist={item} />}
+            showsVerticalScrollIndicator={false}
+            ListFooterComponent={
+              <ActivityIndicator size={20} color={colors.notification} />
+            }
+          />
         )}
       </View>
     </View>
