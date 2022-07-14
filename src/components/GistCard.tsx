@@ -9,6 +9,8 @@ interface Props {
 
 export const GistCard: React.FC<Props> = ({ gist }) => {
   const { theme } = useContext(ThemeContext);
+
+  console.log('FILES: ', gist.files);
   return (
     <View
       style={{
@@ -23,8 +25,12 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
         />
       </View>
       <View style={styles.informationWrapper}>
-        <Text>{gist.description}</Text>
-        <Text>{gist.owner.login}</Text>
+        <Text style={{ ...styles.ownerName, color: theme.colors.text }}>
+          {gist.owner.login}
+        </Text>
+        <Text style={{ color: theme.colors.notification }}>
+          {gist.description || 'Without description'}
+        </Text>
       </View>
     </View>
   );
@@ -42,11 +48,14 @@ const styles = StyleSheet.create({
   },
   imageOwner: {
     height: 100,
-    width: 'auto',
-    borderRadius: 5,
+    width: 105,
+    borderRadius: 60,
   },
   informationWrapper: {
     flex: 3,
     flexDirection: 'column',
+  },
+  ownerName: {
+    fontSize: 20,
   },
 });
