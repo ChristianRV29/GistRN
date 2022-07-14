@@ -36,8 +36,8 @@ export const HomeScreen = () => {
           <ActivityIndicator size={50} color={colors.notification} />
         ) : (
           <>
-            <GistCard gist={publicGists[0]} />
-            <GistCard gist={publicGists[1]} />
+            <GistCard gist={publicGists[2]} />
+            {/* <GistCard gist={publicGists[1]} /> */}
           </>
         )}
       </View>
@@ -65,8 +65,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: -50,
     width: 250,
+    bottom: 0,
   },
   gistsContainer: {
+    alignItems: 'center',
     flex: 1,
   },
 });

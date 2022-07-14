@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import { PublicGist } from '~src/@types/index';
 import { ThemeContext } from '~src/context/theme/theme';
 
@@ -10,7 +12,6 @@ interface Props {
 export const GistCard: React.FC<Props> = ({ gist }) => {
   const { theme } = useContext(ThemeContext);
 
-  console.log('FILES: ', gist.files);
   return (
     <View
       style={{
@@ -25,12 +26,31 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
         />
       </View>
       <View style={styles.informationWrapper}>
-        <Text style={{ ...styles.ownerName, color: theme.colors.text }}>
-          {gist.owner.login}
-        </Text>
-        <Text style={{ color: theme.colors.notification }}>
-          {gist.description || 'Without description'}
-        </Text>
+        <View style={styles.overviewContainer}>
+          <Text style={{ ...styles.ownerName, color: theme.colors.text }}>
+            {gist.owner.login}
+          </Text>
+        </View>
+        <View style={styles.generalContainer}>
+          <Icon
+            name="chatbox-ellipses-outline"
+            size={12}
+            color={theme.colors.notification}
+          />
+          <Text
+            style={{ ...styles.stadistic, color: theme.colors.notification }}>
+            {gist.comments} comments
+          </Text>
+          <Icon
+            name="document-outline"
+            size={12}
+            color={theme.colors.notification}
+          />
+          <Text
+            style={{ ...styles.stadistic, color: theme.colors.notification }}>
+            {Object.keys(gist.files).length} files
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -38,24 +58,45 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
 
 const styles = StyleSheet.create({
   gistWrapper: {
-    flexDirection: 'row',
     borderRadius: 5,
     borderWidth: 2,
+    elevation: 11,
+    flexDirection: 'row',
     marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
   },
   imageWrapper: {
     flex: 1,
   },
   imageOwner: {
+    borderRadius: 90,
     height: 100,
-    width: 105,
-    borderRadius: 60,
   },
   informationWrapper: {
     flex: 3,
     flexDirection: 'column',
+    paddingHorizontal: 10,
   },
   ownerName: {
     fontSize: 20,
+  },
+  stadistic: {
+    fontSize: 12,
+    marginHorizontal: 5,
+  },
+  overviewContainer: {
+    flex: 3,
+  },
+  generalContainer: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });
