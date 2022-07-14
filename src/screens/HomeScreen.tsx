@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   gistsContainer: {
-    alignItems: 'center',
     flex: 1,
   },
 });

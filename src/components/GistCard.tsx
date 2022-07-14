@@ -66,6 +66,7 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
 
 const styles = StyleSheet.create({
   gistWrapper: {
+    flex: 1,
     borderRadius: 5,
     borderWidth: 2,
     elevation: 11,
@@ -78,7 +79,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
-    width: 440,
   },
   imageWrapper: {
     flex: 1,
