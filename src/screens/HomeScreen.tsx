@@ -1,9 +1,18 @@
 import React, { useContext } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { GistCard } from '~src/components/GistCard';
 
 import { ThemeContext } from '~src/context/theme/theme';
+import { useGists } from '~src/hooks/useGists';
 import { globalStyles } from '~src/styles';
 
 export const HomeScreen = () => {
@@ -11,6 +20,7 @@ export const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
 
   const { colors } = theme;
+  const { isLoading, publicGists } = useGists();
 
   return (
     <View
@@ -18,7 +28,7 @@ export const HomeScreen = () => {
         ...globalStyles.mainWrapper,
         top: top + 20,
       }}>
-      <View style={styles.heroWrapper}>
+      <View style={{ ...styles.heroWrapper, borderBottomColor: colors.border }}>
         <Text style={{ ...styles.textTitle, color: colors.text }}>
           Public Gists
         </Text>
@@ -28,6 +38,22 @@ export const HomeScreen = () => {
         source={require('~src/assets/images/octocat.png')}
         style={styles.octoImage}
       />
+      <View style={styles.gistsContainer}>
+        {isLoading ? (
+          <ActivityIndicator size={50} color={colors.notification} />
+        ) : (
+          <FlatList
+            data={publicGists}
+            keyExtractor={gist => gist.id}
+            onEndReachedThreshold={0.4}
+            renderItem={({ item }) => <GistCard gist={item} />}
+            showsVerticalScrollIndicator={false}
+            ListFooterComponent={
+              <ActivityIndicator size={20} color={colors.notification} />
+            }
+          />
+        )}
+      </View>
     </View>
   );
 };
@@ -35,7 +61,12 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
   heroWrapper: {
     alignItems: 'center',
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderTopColor: 'transparent',
+    borderWidth: 2,
     flexDirection: 'row',
+    marginBottom: 10,
   },
   textTitle: {
     marginRight: 10,
@@ -47,5 +78,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: -50,
     width: 250,
+    bottom: 0,
+  },
+  gistsContainer: {
+    flex: 1,
   },
 });

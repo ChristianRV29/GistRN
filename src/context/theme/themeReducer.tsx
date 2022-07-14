@@ -7,9 +7,9 @@ export const darkTheme: ThemeState = {
   dark: true,
   dividerColor: '#0f1d25',
   colors: {
-    primary: '#1B262C',
-    background: '#0F4C75',
-    card: '#3282B8',
+    primary: '#0F4C75',
+    background: '#222831',
+    card: '#30475E',
     text: '#D8EFFF',
     border: '#BBE1FA',
     notification: '#DFF6FF',
