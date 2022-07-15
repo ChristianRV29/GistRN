@@ -15,6 +15,19 @@ export const darkTheme: ThemeState = {
     notification: '#DFF6FF',
   },
 };
+export const lightTheme: ThemeState = {
+  currentTheme: 'Light',
+  dark: false,
+  dividerColor: '#0f1d25',
+  colors: {
+    primary: '#0F4C75',
+    background: '#d6f2ff',
+    card: '#93B5C6',
+    text: '#031f2b',
+    border: '#1b558b',
+    notification: '#023d54',
+  },
+};
 
 export const themeReducer = (
   state: ThemeState,

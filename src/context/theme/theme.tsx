@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from 'react';
+import { Appearance } from 'react-native';
 
 import { ThemeState } from '~src/@types/theme';
-import { darkTheme, themeReducer } from './themeReducer';
+import { darkTheme, lightTheme, themeReducer } from './themeReducer';
 
 interface ThemeContextProps {
   theme: ThemeState;
@@ -12,7 +13,10 @@ interface ThemeContextProps {
 export const ThemeContext = createContext({} as ThemeContextProps);
 
 export const ThemeProvider = ({ children }: any) => {
-  const [theme, dispatch] = useReducer(themeReducer, darkTheme);
+  const [theme, dispatch] = useReducer(
+    themeReducer,
+    Appearance.getColorScheme() === 'dark' ? darkTheme : lightTheme,
+  );
 
   const setDarkTheme = () => dispatch({ type: 'set_dark_theme' });
 
