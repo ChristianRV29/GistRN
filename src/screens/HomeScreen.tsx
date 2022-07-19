@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { GistCard } from '~src/components/GistCard';
 
+import { GistCard } from '~src/components/GistCard';
+import { SwitchTheme } from '~src/components/SwitchTheme';
 import { ThemeContext } from '~src/context/theme/theme';
 import { useGists } from '~src/hooks/useGists';
 import { globalStyles } from '~src/styles';
@@ -18,9 +19,9 @@ import { globalStyles } from '~src/styles';
 export const HomeScreen = () => {
   const { theme } = useContext(ThemeContext);
   const { top } = useSafeAreaInsets();
+  const { isLoading, publicGists } = useGists();
 
   const { colors } = theme;
-  const { isLoading, publicGists } = useGists();
 
   return (
     <View
@@ -33,6 +34,7 @@ export const HomeScreen = () => {
           Public Gists
         </Text>
         <Icon size={30} color={colors.text} name="git-branch-outline" />
+        <SwitchTheme />
       </View>
       <Image
         source={require('~src/assets/images/octocat.png')}
@@ -68,6 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 10,
   },
+
   textTitle: {
     marginRight: 10,
     fontSize: 35,
