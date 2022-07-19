@@ -37,7 +37,7 @@ export const themeReducer = (
     case 'set_dark_theme':
       return { ...darkTheme };
     case 'set_light_theme':
-      return { ...state };
+      return { ...lightTheme };
     default:
       return state;
   }
