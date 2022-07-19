@@ -20,11 +20,10 @@ import { globalStyles } from '~src/styles';
 export const HomeScreen = () => {
   const { theme, setLightTheme, setDarkTheme } = useContext(ThemeContext);
   const { top } = useSafeAreaInsets();
+  const { isLoading, publicGists } = useGists();
+  const [darkIsEnabled, setDarkIsEnabled] = useState<boolean>(theme.dark);
 
   const { colors } = theme;
-  const { isLoading, publicGists } = useGists();
-
-  const [darkIsEnabled, setDarkIsEnabled] = useState<boolean>(theme.dark);
 
   const toogleSwitch = () => {
     setDarkIsEnabled(!darkIsEnabled);
