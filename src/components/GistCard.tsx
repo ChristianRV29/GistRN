@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { formatDistance } from 'date-fns';
 
@@ -13,8 +13,14 @@ interface Props {
 export const GistCard: React.FC<Props> = ({ gist }) => {
   const { theme } = useContext(ThemeContext);
 
+  const gistClicked = (gistData: PublicGist) => {
+    console.log('💬 Gist data: ', gistData.id);
+  };
+
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={0.6}
+      onPress={() => gistClicked(gist)}
       style={{
         ...styles.gistWrapper,
         backgroundColor: theme.colors.card,
@@ -60,7 +66,7 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
