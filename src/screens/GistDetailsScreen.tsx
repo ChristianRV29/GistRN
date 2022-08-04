@@ -8,7 +8,10 @@ interface Props
   extends NativeStackScreenProps<RootStackParamList, 'GistDetailsScreen'> {}
 
 export const GistDetailsScreen = ({ route }: Props) => {
-  const { git_push_url } = route.params;
+  const { gistData } = route.params;
+
+  console.log('Gist info: ', gistData.id);
+
   return (
     <View>
       <Text>Gist details screen</Text>

@@ -9,7 +9,9 @@ import { GistDetailsScreen } from '~src/screens/GistDetailsScreen';
 
 export type RootStackParamList = {
   HomeScreen: undefined;
-  GistDetailsScreen: PublicGist;
+  GistDetailsScreen: {
+    gistData: PublicGist;
+  };
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();

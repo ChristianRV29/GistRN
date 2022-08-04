@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { formatDistance } from 'date-fns';
 
 import { PublicGist } from '~src/@types/index';
 import { ThemeContext } from '~src/context/theme/theme';
+import { RootStackParamList } from '~src/navigation/StackNavigator';
 
 interface Props {
   gist: PublicGist;
@@ -12,9 +15,11 @@ interface Props {
 
 export const GistCard: React.FC<Props> = ({ gist }) => {
   const { theme } = useContext(ThemeContext);
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const gistClicked = (gistData: PublicGist) => {
-    console.log('💬 Gist data: ', gistData.id);
+    navigate('GistDetailsScreen', { gistData });
   };
 
   return (
