@@ -77,10 +77,10 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
 
 const styles = StyleSheet.create({
   gistWrapper: {
-    flex: 1,
     borderRadius: 5,
     borderWidth: 2,
     elevation: 11,
+    flex: 1,
     flexDirection: 'row',
     marginBottom: 15,
     shadowColor: '#000',
@@ -92,14 +92,19 @@ const styles = StyleSheet.create({
     shadowRadius: 6.68,
   },
   imageWrapper: {
-    flex: 1,
+    padding: 10,
+    width: '30%',
   },
   imageOwner: {
-    borderRadius: 90,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     height: 100,
+    overflow: 'hidden',
   },
   informationWrapper: {
-    flex: 3,
+    width: '70%',
     flexDirection: 'column',
     paddingHorizontal: 10,
   },
