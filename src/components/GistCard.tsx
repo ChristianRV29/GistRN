@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { formatDistance } from 'date-fns';
 
 import { PublicGist } from '~src/@types/index';
 import { ThemeContext } from '~src/context/theme/theme';
+import { RootStackParamList } from '~src/navigation/StackNavigator';
 
 interface Props {
   gist: PublicGist;
@@ -12,9 +15,17 @@ interface Props {
 
 export const GistCard: React.FC<Props> = ({ gist }) => {
   const { theme } = useContext(ThemeContext);
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const gistClicked = (gistData: PublicGist) => {
+    navigate('GistDetailsScreen', { gistData });
+  };
 
   return (
-    <View
+    <TouchableOpacity
+      activeOpacity={0.6}
+      onPress={() => gistClicked(gist)}
       style={{
         ...styles.gistWrapper,
         backgroundColor: theme.colors.card,
@@ -60,16 +71,16 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   gistWrapper: {
-    flex: 1,
     borderRadius: 5,
     borderWidth: 2,
     elevation: 11,
+    flex: 1,
     flexDirection: 'row',
     marginBottom: 15,
     shadowColor: '#000',
@@ -81,14 +92,19 @@ const styles = StyleSheet.create({
     shadowRadius: 6.68,
   },
   imageWrapper: {
-    flex: 1,
+    padding: 10,
+    width: '30%',
   },
   imageOwner: {
-    borderRadius: 90,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     height: 100,
+    overflow: 'hidden',
   },
   informationWrapper: {
-    flex: 3,
+    width: '70%',
     flexDirection: 'column',
     paddingHorizontal: 10,
   },

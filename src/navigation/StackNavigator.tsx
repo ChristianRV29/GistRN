@@ -4,8 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { HomeScreen } from '~src/screens/HomeScreen';
 import { ThemeContext } from '~src/context/theme/theme';
+import { PublicGist } from '~src/@types';
+import { GistDetailsScreen } from '~src/screens/GistDetailsScreen';
 
-export type RootStackParamList = { HomeScreen: undefined };
+export type RootStackParamList = {
+  HomeScreen: undefined;
+  GistDetailsScreen: {
+    gistData: PublicGist;
+  };
+};
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
@@ -18,6 +25,7 @@ export const StackNavigator = () => {
         initialRouteName="HomeScreen"
         screenOptions={{ headerShown: false }}>
         <Screen name="HomeScreen" component={HomeScreen} />
+        <Screen name="GistDetailsScreen" component={GistDetailsScreen} />
       </Navigator>
     </NavigationContainer>
   );
