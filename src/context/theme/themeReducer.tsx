@@ -23,7 +23,7 @@ export const lightTheme: ThemeState = {
     primary: '#0F4C75',
     background: '#d6f2ff',
     card: '#93B5C6',
-    text: '#031f2b',
+    text: '#000080',
     border: '#1b558b',
     notification: '#023d54',
   },
