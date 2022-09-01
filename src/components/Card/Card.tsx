@@ -1,5 +1,12 @@
-import React, { useContext } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useContext, useRef, useState } from 'react';
+import {
+  ButtonProps,
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -8,12 +15,19 @@ import { formatDistance } from 'date-fns';
 import { PublicGist } from '~src/@types/index';
 import { ThemeContext } from '~src/context/theme/theme';
 import { RootStackParamList } from '~src/navigation/StackNavigator';
+import { InformationSubContainer, GistTitleText } from './styles';
+import {
+  OwnerImage,
+  ImageContainer,
+  TouchableWrapperCard,
+  InformationContainer,
+} from './styles';
 
 interface Props {
   gist: PublicGist;
 }
 
-export const GistCard: React.FC<Props> = ({ gist }) => {
+export const Card: React.FC<Props> = ({ gist }) => {
   const { theme } = useContext(ThemeContext);
   const { navigate } =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -22,54 +36,57 @@ export const GistCard: React.FC<Props> = ({ gist }) => {
     navigate('GistDetailsScreen', { gistData });
   };
 
+  const { colors } = theme;
+  const iosRef = useRef(Platform.OS === 'ios' ? true : false);
+
   return (
-    <TouchableOpacity
+    <TouchableWrapperCard
       activeOpacity={0.6}
-      onPress={() => gistClicked(gist)}
-      style={{
-        ...styles.gistWrapper,
-        backgroundColor: theme.colors.card,
-        borderColor: theme.colors.border,
-      }}>
-      <View style={styles.imageWrapper}>
-        <Image
+      bgColor={colors.card}
+      borderColor={colors.border}
+      onPress={() => gistClicked(gist)}>
+      <ImageContainer isIOS={iosRef.current}>
+        <OwnerImage
+          borderColor={colors.text}
           source={{ uri: gist.owner.avatar_url }}
-          style={styles.imageOwner}
+          resizeMode="cover"
         />
-      </View>
-      <View style={styles.informationWrapper}>
-        <View style={styles.overviewContainer}>
-          <Text style={{ ...styles.ownerName, color: theme.colors.text }}>
+      </ImageContainer>
+      <InformationContainer isIOS={iosRef.current}>
+        <InformationSubContainer>
+          <GistTitleText isIOS={iosRef.current}>
             {gist.owner.login}
-          </Text>
+          </GistTitleText>
           <Text
             style={{
               ...styles.creationDate,
-              color: theme.colors.primary,
+              color: theme.colors.notification,
             }}>
             {formatDistance(new Date(gist.created_at), new Date())} ago
           </Text>
-        </View>
+        </InformationSubContainer>
         <View style={styles.generalContainer}>
           <Icon
             name="chatbox-ellipses-outline"
             size={12}
-            color={theme.colors.primary}
+            color={theme.colors.notification}
           />
-          <Text style={{ ...styles.stadistic, color: theme.colors.primary }}>
+          <Text
+            style={{ ...styles.stadistic, color: theme.colors.notification }}>
             {gist.comments} comments
           </Text>
           <Icon
             name="document-outline"
             size={12}
-            color={theme.colors.primary}
+            color={theme.colors.notification}
           />
-          <Text style={{ ...styles.stadistic, color: theme.colors.primary }}>
+          <Text
+            style={{ ...styles.stadistic, color: theme.colors.notification }}>
             {Object.keys(gist.files).length} files
           </Text>
         </View>
-      </View>
-    </TouchableOpacity>
+      </InformationContainer>
+    </TouchableWrapperCard>
   );
 };
 

@@ -24,11 +24,11 @@ export const SwitchTheme = () => {
         onChange={toogleSwitch}
         trackColor={{
           false: theme.colors.text,
-          true: theme.colors.text,
+          true: theme.colors.primary,
         }}
         thumbColor={
           Platform.OS === 'android'
-            ? theme.colors.border
+            ? theme.colors.primary
             : theme.colors.background
         }
       />

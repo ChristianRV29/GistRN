@@ -5,27 +5,27 @@ type ThemeAction = { type: 'set_light_theme' } | { type: 'set_dark_theme' };
 export const darkTheme: ThemeState = {
   currentTheme: 'Dark',
   dark: true,
-  dividerColor: '#0f1d25',
+  dividerColor: 'rgb(165, 201, 202)',
   colors: {
-    primary: '#0F4C75',
-    background: '#222831',
-    card: '#30475E',
-    text: '#D8EFFF',
-    border: '#BBE1FA',
-    notification: '#DFF6FF',
+    primary: 'rgb(165, 214, 246)',
+    background: 'rgb(44, 51, 51)',
+    card: 'rgb(57, 91, 100)',
+    text: 'rgb(165, 201, 202)',
+    border: 'rgb(165, 201, 202)',
+    notification: 'rgb(231, 246, 242)',
   },
 };
 export const lightTheme: ThemeState = {
   currentTheme: 'Light',
   dark: false,
-  dividerColor: '#0f1d25',
+  dividerColor: 'rgb(53, 66, 89)',
   colors: {
-    primary: '#0F4C75',
-    background: '#d6f2ff',
-    card: '#93B5C6',
-    text: '#000080',
-    border: '#1b558b',
-    notification: '#023d54',
+    background: 'rgb(222, 222, 222)',
+    border: 'rgba(78, 114, 224, 0.8)',
+    card: 'rgba(255, 255, 255, 0.95)',
+    notification: 'rgb(255,255,255)',
+    primary: 'rgb(196, 215, 224)',
+    text: 'rgb(110, 133, 183)',
   },
 };
 

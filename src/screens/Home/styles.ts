@@ -1,4 +1,5 @@
 import styled from '@emotion/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const MainWrapper = styled.View<{ topSpacing: number }>`
   height: 100%;
@@ -8,7 +9,7 @@ export const MainWrapper = styled.View<{ topSpacing: number }>`
   width: 100%;
 `;
 
-export const Header = styled.View`
+export const Header = styled.View<{ borderBottomColor?: string }>`
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -20,9 +21,13 @@ export const Header = styled.View`
 
 export const TextHeader = styled.Text`
   color: ${({ theme }) => theme.colors.text};
-  font-size: 20px;
+  font-size: 30px;
   letter-spacing: 0.2px;
-  margin-right: 2px;
+  margin-right: 10px;
+`;
+
+export const StyledIcon = styled(Icon)`
+  top: 2px;
 `;
 
 export const GistsWrapper = styled.View`
@@ -30,7 +35,7 @@ export const GistsWrapper = styled.View`
   flex-direction: column;
   height: 100%;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 10px 5px 10px;
   width: 100%;
   z-index: 1;
 `;
