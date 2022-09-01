@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { ActivityIndicator, FlatList, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/Ionicons';
 
-import { GistCard } from '~src/components/GistCard';
+import { Card } from '~src/components/Card/Card';
 import { SwitchTheme } from '~src/components/SwitchTheme';
 import { ThemeContext } from '~src/context/theme/theme';
 import { useGists } from '~src/hooks/useGists';
@@ -13,6 +12,7 @@ import {
   LoadingIndicator,
   MainWrapper,
   OctoImage,
+  StyledIcon,
   TextHeader,
 } from './styles';
 
@@ -21,13 +21,13 @@ export const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
   const { isLoading, publicGists } = useGists();
 
-  const { colors } = theme;
+  const { colors, dividerColor } = theme;
 
   return (
     <MainWrapper topSpacing={top}>
-      <Header>
-        <TextHeader theme={theme}>All Gists</TextHeader>
-        <Icon size={22} color={colors.text} name="git-branch-outline" />
+      <Header borderBottomColor={dividerColor}>
+        <TextHeader theme={theme}>List of gists</TextHeader>
+        <StyledIcon size={25} color={colors.text} name="git-branch-outline" />
         <SwitchTheme />
       </Header>
       <GistsWrapper>
@@ -38,10 +38,10 @@ export const HomeScreen = () => {
             data={publicGists}
             keyExtractor={gist => gist.id}
             onEndReachedThreshold={0.4}
-            renderItem={({ item }) => <GistCard gist={item} />}
+            renderItem={({ item }) => <Card gist={item} />}
             showsVerticalScrollIndicator={false}
             ListFooterComponent={
-              <ActivityIndicator size={20} color={colors.notification} />
+              <ActivityIndicator size="small" color={colors.text} />
             }
           />
         )}
