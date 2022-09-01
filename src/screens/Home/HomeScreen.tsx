@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from 'react';
 import { ActivityIndicator, FlatList, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -26,7 +27,13 @@ export const HomeScreen = () => {
   return (
     <MainWrapper topSpacing={top}>
       <Header borderBottomColor={dividerColor}>
-        <TextHeader theme={theme}>List of gists</TextHeader>
+        <TextHeader
+          style={{
+            fontFamily: 'RobotoSlab-Black',
+          }}
+          theme={theme}>
+          List of gists
+        </TextHeader>
         <StyledIcon size={25} color={colors.text} name="git-branch-outline" />
         <SwitchTheme />
       </Header>
