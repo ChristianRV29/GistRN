@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { HomeScreen } from '~src/screens/Home/HomeScreen';
 import { ThemeContext } from '~src/context/theme/theme';
 import { PublicGist } from '~src/@types';
-import { GistDetailsScreen } from '~src/screens/GistDetailsScreen';
+import { GistDetailsScreen } from '~src/screens/GistDetails/GistDetails';
 
 export type RootStackParamList = {
   HomeScreen: undefined;

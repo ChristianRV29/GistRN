@@ -1,16 +1,10 @@
 import styled from '@emotion/native';
-import { Switch } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 export const SwitchWrapper = styled.View`
+  align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  background-color: red;
+  justify-content: space-evenly;
+  max-width: 120px;
+  width: 120px;
 `;
-
-export const SunIcon = styled(Icon)``;
-
-export const StyledSWitch = styled(Switch)``;
-
-export const MoonIcon = styled(Icon)``;

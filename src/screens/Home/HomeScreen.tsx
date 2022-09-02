@@ -8,8 +8,8 @@ import { SwitchTheme } from '~src/components/Switch/SwitchTheme';
 import { ThemeContext } from '~src/context/theme/theme';
 import { useGists } from '~src/hooks/useGists';
 import {
-  GistsWrapper,
-  Header,
+  GistsContainer,
+  HeaderContainer,
   LoadingIndicator,
   MainWrapper,
   OctoImage,
@@ -26,7 +26,7 @@ export const HomeScreen = () => {
 
   return (
     <MainWrapper topSpacing={top}>
-      <Header borderBottomColor={dividerColor}>
+      <HeaderContainer borderBottomColor={dividerColor}>
         <TextHeader
           style={{
             fontFamily: 'RobotoSlab-Black',
@@ -36,8 +36,8 @@ export const HomeScreen = () => {
         </TextHeader>
         <StyledIcon size={25} color={colors.text} name="git-branch-outline" />
         <SwitchTheme />
-      </Header>
-      <GistsWrapper>
+      </HeaderContainer>
+      <GistsContainer>
         {isLoading ? (
           <LoadingIndicator color={colors.text} size="large" />
         ) : (
@@ -52,7 +52,7 @@ export const HomeScreen = () => {
             }
           />
         )}
-      </GistsWrapper>
+      </GistsContainer>
       <OctoImage
         isIOS={Platform.OS === 'ios' ? true : false}
         resizeMode="contain"

@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Platform } from 'react-native';
+import { Platform, Switch } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { ThemeContext } from '~src/context/theme/theme';
-import { MoonIcon, StyledSWitch, SunIcon, SwitchWrapper } from './styles';
+import { SwitchWrapper } from './styles';
 
 export const SwitchTheme = () => {
   const { theme, setDarkTheme, setLightTheme } = useContext(ThemeContext);
@@ -18,8 +19,8 @@ export const SwitchTheme = () => {
   };
   return (
     <SwitchWrapper>
-      <SunIcon name="sunny-outline" size={25} color={theme.colors.text} />
-      <StyledSWitch
+      <Icon name="sunny-outline" size={25} color={theme.colors.text} />
+      <Switch
         value={darkIsEnabled}
         onChange={toogleSwitch}
         trackColor={{
@@ -32,7 +33,7 @@ export const SwitchTheme = () => {
             : theme.colors.background
         }
       />
-      <MoonIcon name="moon-outline" size={25} color={theme.colors.text} />
+      <Icon name="moon-outline" size={25} color={theme.colors.text} />
     </SwitchWrapper>
   );
 };
