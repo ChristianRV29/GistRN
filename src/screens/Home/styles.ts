@@ -9,10 +9,11 @@ export const MainWrapper = styled.View<{ topSpacing: number }>`
   width: 100%;
 `;
 
-export const Header = styled.View<{ borderBottomColor?: string }>`
+export const HeaderContainer = styled.View<{ borderBottomColor?: string }>`
   align-items: center;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   height: 80px;
   margin-bottom: 10px;
   padding: 0 15px;
@@ -22,7 +23,7 @@ export const Header = styled.View<{ borderBottomColor?: string }>`
 export const TextHeader = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: 30px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.5px;
   margin-right: 10px;
 `;
 
@@ -30,7 +31,7 @@ export const StyledIcon = styled(Icon)`
   top: 2px;
 `;
 
-export const GistsWrapper = styled.View`
+export const GistsContainer = styled.View`
   display: flex;
   flex-direction: column;
   height: 100%;

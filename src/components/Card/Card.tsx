@@ -1,12 +1,6 @@
-import React, { useContext, useRef, useState } from 'react';
-import {
-  ButtonProps,
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import React, { useContext, useEffect, useRef } from 'react';
+import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -15,12 +9,18 @@ import { formatDistance } from 'date-fns';
 import { PublicGist } from '~src/@types/index';
 import { ThemeContext } from '~src/context/theme/theme';
 import { RootStackParamList } from '~src/navigation/StackNavigator';
-import { InformationSubContainer, GistTitleText } from './styles';
 import {
-  OwnerImage,
+  AgoText,
+  DescriptionContainer,
+  DescriptionText,
   ImageContainer,
-  TouchableWrapperCard,
   InformationContainer,
+  InformationSubContainer,
+  MetricsContainer,
+  MetricText,
+  OwnerImage,
+  TitleText,
+  TouchableWrapperCard,
 } from './styles';
 
 interface Props {
@@ -32,18 +32,25 @@ export const Card: React.FC<Props> = ({ gist }) => {
   const { navigate } =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const gistClicked = (gistData: PublicGist) => {
-    navigate('GistDetailsScreen', { gistData });
-  };
+  const fileNameRef = useRef<string>();
 
   const { colors } = theme;
   const iosRef = useRef(Platform.OS === 'ios' ? true : false);
 
+  useEffect(() => {
+    Object.keys(gist.files).forEach(file => {
+      fileNameRef.current = file;
+    });
+  }, [gist]);
+
+  const gistClicked = (gistData: PublicGist) => {
+    navigate('GistDetailsScreen', { gistData });
+  };
+
   return (
     <TouchableWrapperCard
       activeOpacity={0.6}
-      bgColor={colors.card}
-      borderColor={colors.border}
+      theme={theme}
       onPress={() => gistClicked(gist)}>
       <ImageContainer isIOS={iosRef.current}>
         <OwnerImage
@@ -54,92 +61,36 @@ export const Card: React.FC<Props> = ({ gist }) => {
       </ImageContainer>
       <InformationContainer isIOS={iosRef.current}>
         <InformationSubContainer>
-          <GistTitleText isIOS={iosRef.current}>
-            {gist.owner.login}
-          </GistTitleText>
-          <Text
-            style={{
-              ...styles.creationDate,
-              color: theme.colors.notification,
-            }}>
+          <TitleText
+            theme={theme}
+            isIOS={iosRef.current}
+            style={{ fontFamily: 'RobotoSlab-SemiBold' }}>
+            {gist.owner.login}/{fileNameRef.current}
+          </TitleText>
+          <AgoText theme={theme} style={{ fontFamily: 'RobotoSlab-Light' }}>
             {formatDistance(new Date(gist.created_at), new Date())} ago
-          </Text>
+          </AgoText>
+          <DescriptionContainer>
+            <DescriptionText
+              theme={theme}
+              style={{ fontFamily: 'RobotoSlab-Light' }}>
+              {gist.description}
+            </DescriptionText>
+          </DescriptionContainer>
         </InformationSubContainer>
-        <View style={styles.generalContainer}>
+        <MetricsContainer>
           <Icon
             name="chatbox-ellipses-outline"
             size={12}
-            color={theme.colors.notification}
+            color={theme.colors.text}
           />
-          <Text
-            style={{ ...styles.stadistic, color: theme.colors.notification }}>
-            {gist.comments} comments
-          </Text>
-          <Icon
-            name="document-outline"
-            size={12}
-            color={theme.colors.notification}
-          />
-          <Text
-            style={{ ...styles.stadistic, color: theme.colors.notification }}>
+          <MetricText theme={theme}>{gist.comments} comments</MetricText>
+          <Icon name="document-outline" size={12} color={theme.colors.text} />
+          <MetricText theme={theme}>
             {Object.keys(gist.files).length} files
-          </Text>
-        </View>
+          </MetricText>
+        </MetricsContainer>
       </InformationContainer>
     </TouchableWrapperCard>
   );
 };
-
-const styles = StyleSheet.create({
-  gistWrapper: {
-    borderRadius: 5,
-    borderWidth: 2,
-    elevation: 11,
-    flex: 1,
-    flexDirection: 'row',
-    marginBottom: 15,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-  },
-  imageWrapper: {
-    padding: 10,
-    width: '30%',
-  },
-  imageOwner: {
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    height: 100,
-    overflow: 'hidden',
-  },
-  informationWrapper: {
-    width: '70%',
-    flexDirection: 'column',
-    paddingHorizontal: 10,
-  },
-  ownerName: {
-    fontSize: 20,
-  },
-  creationDate: {
-    fontSize: 12,
-  },
-  stadistic: {
-    fontSize: 12,
-    marginHorizontal: 5,
-  },
-  overviewContainer: {
-    flex: 3,
-  },
-  generalContainer: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-});
