@@ -50,7 +50,7 @@ export const TitleText = styled.Text<{ isIOS?: boolean }>`
 
 export const AgoText = styled.Text`
   color: ${({ theme }) => theme.colors.border};
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
 `;
 

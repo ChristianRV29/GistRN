@@ -4,7 +4,7 @@ import { ActivityIndicator, FlatList, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Card } from '~src/components/Card/Card';
-import { SwitchTheme } from '~src/components/SwitchTheme';
+import { SwitchTheme } from '~src/components/Switch/SwitchTheme';
 import { ThemeContext } from '~src/context/theme/theme';
 import { useGists } from '~src/hooks/useGists';
 import {
