@@ -22,7 +22,7 @@ export const Header = styled.View<{ borderBottomColor?: string }>`
 export const TextHeader = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: 30px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.5px;
   margin-right: 10px;
 `;
 
