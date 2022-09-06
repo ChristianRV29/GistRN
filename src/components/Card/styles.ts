@@ -32,6 +32,7 @@ export const InformationContainer = styled.View<{ isIOS?: boolean }>`
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
+  padding: 0 2px 2px 0;
   width: ${({ isIOS }) => (isIOS ? '70%' : '75%')};
 `;
 
@@ -46,6 +47,10 @@ export const TitleText = styled.Text<{ isIOS?: boolean }>`
   color: ${({ theme }) => theme.colors.text};
   font-size: ${({ isIOS }) => (isIOS ? '15px' : '16px')};
   margin-bottom: 2px;
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 `;
 
 export const AgoText = styled.Text`
@@ -65,6 +70,9 @@ export const DescriptionContainer = styled.View`
 export const DescriptionText = styled.Text`
   color: ${({ theme }) => theme.colors.border};
   font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 `;
 
 export const MetricsContainer = styled.View`

@@ -1,37 +1,36 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import React, { useContext } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '~src/navigation/StackNavigator';
+import {
+  HeaderContainer,
+  MainWrapper,
+  OwnerImage,
+  OwnerNameText,
+} from './styles';
+import { ThemeContext } from '~src/context/theme/theme';
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, 'GistDetailsScreen'> {}
 
 export const GistDetailsScreen = ({ route }: Props) => {
+  const { theme } = useContext(ThemeContext);
+  const { gistData } = route.params;
+
+  const { top } = useSafeAreaInsets();
+
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.head}>
-        <Text>{route.params.gistData.id}</Text>
-      </View>
-    </View>
+    <MainWrapper topSpacing={top}>
+      <HeaderContainer theme={theme}>
+        <OwnerImage theme={theme} source={{ uri: gistData.owner.avatar_url }} />
+        <OwnerNameText
+          style={{ fontFamily: 'RobotoSlab-ExtraBold' }}
+          theme={theme}>
+          {gistData.owner.login}
+        </OwnerNameText>
+      </HeaderContainer>
+    </MainWrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
-  head: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  imageWrapper: {
-    height: 30,
-    width: 30,
-  },
-  body: {
-    flex: 3,
-  },
-});
