@@ -46,6 +46,10 @@ export const TitleText = styled.Text<{ isIOS?: boolean }>`
   color: ${({ theme }) => theme.colors.text};
   font-size: ${({ isIOS }) => (isIOS ? '15px' : '16px')};
   margin-bottom: 2px;
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const AgoText = styled.Text`

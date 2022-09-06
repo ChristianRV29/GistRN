@@ -62,8 +62,9 @@ export const Card: React.FC<Props> = ({ gist }) => {
       <InformationContainer isIOS={iosRef.current}>
         <InformationSubContainer>
           <TitleText
-            theme={theme}
             isIOS={iosRef.current}
+            numberOfLines={2}
+            theme={theme}
             style={{ fontFamily: 'RobotoSlab-SemiBold' }}>
             {gist.owner.login}/{fileNameRef.current}
           </TitleText>
