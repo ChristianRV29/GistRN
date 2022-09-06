@@ -73,8 +73,9 @@ export const Card: React.FC<Props> = ({ gist }) => {
           </AgoText>
           <DescriptionContainer>
             <DescriptionText
-              theme={theme}
-              style={{ fontFamily: 'RobotoSlab-Light' }}>
+              numberOfLines={3}
+              style={{ fontFamily: 'RobotoSlab-Light' }}
+              theme={theme}>
               {gist.description}
             </DescriptionText>
           </DescriptionContainer>
