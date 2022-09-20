@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '~src/navigation/StackNavigator';
 import {
+  DescriptionContainer,
   HeaderContainer,
   MainWrapper,
   OwnerImage,
@@ -31,6 +32,7 @@ export const GistDetailsScreen = ({ route }: Props) => {
           {gistData.owner.login}
         </OwnerNameText>
       </HeaderContainer>
+      <DescriptionContainer></DescriptionContainer>
     </MainWrapper>
   );
 };

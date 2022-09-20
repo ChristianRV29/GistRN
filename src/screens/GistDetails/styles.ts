@@ -22,13 +22,21 @@ export const HeaderContainer = styled.View`
 `;
 
 export const OwnerImage = styled.Image`
-  border-radius: 150px;
-  height: 150px;
-  width: 150px;
+  border-radius: 200px;
+  height: 200px;
+  width: 200px;
 `;
 
 export const OwnerNameText = styled.Text`
   color: ${({ theme }) => theme.colors.text};
-  font-size: 12px;
+  font-size: 20px;
   margin-top: 12px;
 `;
+
+export const DescriptionContainer = styled.View`
+  height: 100%;
+  margin-top: 10px;
+  width: 100%;
+`;
+
+export const DescriptionText = styled.Text``;
