@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/native": "^11.10.0",
     "@emotion/react": "^11.10.4",
+    "@emotion/types": "^0.7.0",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "axios": "^0.27.2",
