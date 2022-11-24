@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Card } from '~src/components/Card/Card';
 import { SwitchTheme } from '~src/components/Switch/SwitchTheme';
 import { ThemeContext } from '~src/context/theme/theme';
-import { useGists } from '~src/hooks/useGists';
+import { usePublicGists } from '~src/hooks';
 import {
   GistsContainer,
   HeaderContainer,
@@ -20,7 +20,7 @@ import {
 export const HomeScreen = () => {
   const { theme } = useContext(ThemeContext);
   const { top } = useSafeAreaInsets();
-  const { isLoading, publicGists } = useGists();
+  const { isLoading, publicGists } = usePublicGists({ maxLimit: 10 });
 
   const { colors, dividerColor } = theme;
 
